@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Technical Documentation | AI Automation of FVE Sales Process</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+<style>
+    :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --ink: #0f172a;
+        --muted: #64748b;
+        --soft: #e2e8f0;
+        --soft-2: #f1f5f9;
+        --blue: #2563eb;
+        --blue-dark: #1e3a8a;
+        --blue-soft: #dbeafe;
+        --green: #16a34a;
+        --green-soft: #dcfce7;
+        --amber: #f59e0b;
+        --amber-soft: #fef3c7;
+        --red: #dc2626;
+        --red-soft: #fee2e2;
+        --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+        --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.55;
+    }
+
+    .layout {
+        display: grid;
+        grid-template-columns: 300px minmax(0, 1fr);
+        min-height: 100vh;
+    }
+
+    aside {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding: 28px 22px;
+        background: #0f172a;
+        color: white;
+        overflow-y: auto;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+    }
+
+    .brand-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+    }
+
+    .brand-title {
+        font-size: 15px;
+        font-weight: 850;
+        line-height: 1.2;
+    }
+
+    .brand-subtitle {
+        color: #94a3b8;
+        font-size: 12px;
+        margin-top: 2px;
+        font-weight: 650;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    nav a {
+        color: #cbd5e1;
+        text-decoration: none;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav a:hover {
+        color: white;
+        background: rgba(255,255,255,0.08);
+    }
+
+    main {
+        min-width: 0;
+        padding: 56px 72px 90px;
+    }
+
+    .hero {
+        background: radial-gradient(circle at top right, rgba(37,99,235,0.22), transparent 34%),
+                    linear-gradient(135deg, #0f172a 0%, #1e3a8a 58%, #0f766e 100%);
+        color: white;
+        border-radius: 28px;
+        padding: 58px;
+        box-shadow: var(--shadow);
+        margin-bottom: 58px;
+    }
+
+    .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 13px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        color: rgba(255,255,255,0.9);
+        font-size: 13px;
+        font-weight: 800;
+        margin-bottom: 22px;
+    }
+
+    h1 {
+        margin: 0 0 18px;
+        max-width: 950px;
+        font-size: clamp(42px, 5vw, 72px);
+        line-height: 0.98;
+        letter-spacing: -0.035em;
+        font-weight: 900;
+    }
+
+    .hero p {
+        margin: 0;
+        max-width: 850px;
+        color: rgba(255,255,255,0.78);
+        font-size: 19px;
+        font-weight: 550;
+    }
+
+    .hero-meta {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 38px;
+    }
+
+    .meta-card {
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 16px;
+        padding: 18px;
+    }
+
+    .meta-label {
+        color: rgba(255,255,255,0.62);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 4px;
+    }
+
+    .meta-value {
+        font-size: 18px;
+        font-weight: 850;
+    }
+
+    section {
+        margin-bottom: 74px;
+        scroll-margin-top: 34px;
+    }
+
+    .section-heading {
+        margin-bottom: 26px;
+        max-width: 950px;
+    }
+
+    .section-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 850;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        margin: 0;
+        font-size: 42px;
+        line-height: 1.08;
+        letter-spacing: -0.025em;
+        font-weight: 900;
+    }
+
+    .section-subtitle {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 18px;
+        max-width: 880px;
+        font-weight: 520;
+    }
+
+    h3 {
+        margin: 0 0 12px;
+        font-size: 23px;
+        letter-spacing: -0.015em;
+    }
+
+    h4 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        font-weight: 850;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .card {
+        background: var(--panel);
+        border: 1px solid var(--soft);
+        border-radius: var(--radius);
+        padding: 26px;
+        box-shadow: var(--shadow);
+    }
+
+    .compact-card {
+        background: var(--panel);
+        border: 1px solid var(--soft);
+        border-radius: 16px;
+        padding: 20px;
+    }
+
+    .card p,
+    .compact-card p {
+        margin: 0;
+        color: var(--muted);
+        font-weight: 520;
+    }
+
+    .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        font-size: 18px;
+    }
+
+    .highlight {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 18px;
+        align-items: start;
+        border-radius: 20px;
+        padding: 24px;
+        margin: 26px 0;
+        border: 1px solid #bfdbfe;
+        background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+    }
+
+    .highlight .icon { margin: 0; }
+    .highlight-title {
+        font-size: 20px;
+        font-weight: 900;
+        margin-bottom: 5px;
+    }
+
+    .highlight-text {
+        color: var(--muted);
+        font-size: 15px;
+        font-weight: 560;
+    }
+
+    .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: var(--soft-2);
+        color: #334155;
+        font-size: 13px;
+        font-weight: 800;
+    }
+
+    .list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+    }
+
+    .list li {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 10px;
+        color: #334155;
+        font-weight: 620;
+        font-size: 14px;
+    }
+
+    .list i {
+        color: var(--green);
+        margin-top: 4px;
+        font-size: 12px;
+    }
+
+    .split-block {
+        display: grid;
+        grid-template-columns: 240px minmax(0, 1fr);
+        gap: 28px;
+        padding: 30px 0;
+        border-top: 1px solid var(--soft);
+    }
+
+    .split-block:first-of-type { border-top: none; padding-top: 0; }
+
+    .split-label {
+        position: sticky;
+        top: 26px;
+        align-self: start;
+    }
+
+    .split-label h3 { margin-bottom: 6px; }
+    .split-label p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 560;
+    }
+
+    .flow {
+        background: #0f172a;
+        border-radius: 26px;
+        padding: 38px;
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .flow-stack {
+        max-width: 760px;
+        margin: 0 auto;
+        display: grid;
+        gap: 12px;
+        justify-items: center;
+    }
+
+    .flow-node {
+        width: min(100%, 560px);
+        background: rgba(255,255,255,0.96);
+        color: var(--ink);
+        border-radius: 16px;
+        padding: 18px 22px;
+        font-size: 20px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .flow-node small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+    }
+
+    .flow-arrow {
+        color: rgba(255,255,255,0.7);
+        font-size: 24px;
+        line-height: 1;
+    }
+
+    .branch {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .branch-card {
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 16px;
+        padding: 18px;
+        text-align: center;
+        font-weight: 900;
+    }
+
+    .principle-list {
+        display: grid;
+        gap: 14px;
+    }
+
+    .principle {
+        display: grid;
+        grid-template-columns: 46px minmax(0, 1fr);
+        gap: 16px;
+        align-items: start;
+        padding: 20px;
+        border: 1px solid var(--soft);
+        border-radius: 16px;
+        background: white;
+    }
+
+    .principle-mark {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--soft-2);
+        color: var(--blue);
+        font-size: 18px;
+    }
+
+    .principle strong {
+        display: block;
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+
+    .principle span {
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 540;
+    }
+
+    .mini-flow {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+        padding: 16px;
+        border: 1px dashed #cbd5e1;
+        border-radius: 16px;
+        background: #f8fafc;
+    }
+
+    .mini-flow-node {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: white;
+        border: 1px solid var(--soft);
+        font-size: 13px;
+        font-weight: 850;
+        color: #334155;
+    }
+
+    .mini-flow-arrow {
+        color: var(--muted);
+        font-weight: 900;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        overflow: hidden;
+        border: 1px solid var(--soft);
+        border-radius: 16px;
+        background: white;
+        box-shadow: var(--shadow);
+    }
+
+    th, td {
+        padding: 16px 18px;
+        text-align: left;
+        border-bottom: 1px solid var(--soft);
+        vertical-align: top;
+    }
+
+    th {
+        background: #eff6ff;
+        color: var(--blue-dark);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 900;
+    }
+
+    td {
+        color: #334155;
+        font-size: 14px;
+        font-weight: 560;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    .phase {
+        background: white;
+        border: 1px solid var(--soft);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        margin-bottom: 26px;
+        overflow: hidden;
+    }
+
+    .phase-header {
+        display: grid;
+        grid-template-columns: 80px minmax(0, 1fr) 150px;
+        gap: 20px;
+        align-items: center;
+        padding: 26px 30px;
+        border-bottom: 1px solid var(--soft);
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .phase-number {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        background: var(--blue);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: 900;
+    }
+
+    .phase-time {
+        justify-self: end;
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: var(--blue-soft);
+        color: var(--blue-dark);
+        font-size: 13px;
+        font-weight: 900;
+    }
+
+    .phase-body {
+        padding: 30px;
+        display: grid;
+        gap: 22px;
+    }
+
+    .task-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .task-card {
+        border: 1px solid var(--soft);
+        background: var(--soft-2);
+        border-radius: 16px;
+        padding: 18px;
+    }
+
+    .task-card h4 {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        border-radius: 999px;
+        padding: 7px 10px;
+        font-size: 12px;
+        font-weight: 900;
+    }
+
+    .status.green { background: var(--green-soft); color: #166534; }
+    .status.amber { background: var(--amber-soft); color: #92400e; }
+    .status.red { background: var(--red-soft); color: #991b1b; }
+
+    .footer {
+        color: var(--muted);
+        border-top: 1px solid var(--soft);
+        padding-top: 28px;
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    @media (max-width: 1100px) {
+        .layout { grid-template-columns: 1fr; }
+        aside { position: relative; height: auto; }
+        main { padding: 34px 22px 70px; }
+        .hero { padding: 34px; }
+        .hero-meta, .grid-4, .grid-3, .grid-2, .task-grid, .branch { grid-template-columns: 1fr; }
+        .split-block { grid-template-columns: 1fr; }
+        .phase-header { grid-template-columns: 1fr; }
+        .phase-time { justify-self: start; }
+    }
+
+    @media print {
+        aside { display: none; }
+        .layout { display: block; }
+        main { padding: 0; }
+        section, .phase, .hero { break-inside: avoid; }
+        body { background: white; }
+    }
+</style>
+</head>
+<body>
+<div class="layout">
+    <aside>
+        <div class="brand">
+            <div class="brand-icon"><i class="fa-solid fa-solar-panel"></i></div>
+            <div>
+                <div class="brand-title">FVE AI Sales Automation</div>
+                <div class="brand-subtitle">Technical documentation</div>
+            </div>
+        </div>
+        <nav>
+            <a href="#overview"><i class="fa-solid fa-compass"></i>Overview</a>
+            <a href="#architecture"><i class="fa-solid fa-sitemap"></i>Architecture</a>
+            <a href="#principles"><i class="fa-solid fa-chess-board"></i>Architecture Principles</a>
+            <a href="#modules"><i class="fa-solid fa-cubes"></i>System Modules</a>
+            <a href="#data"><i class="fa-solid fa-database"></i>Data Model</a>
+            <a href="#integrations"><i class="fa-solid fa-plug"></i>Integrations</a>
+            <a href="#risks"><i class="fa-solid fa-shield-halved"></i>Risks & Mitigation</a>
+            <a href="#roadmap"><i class="fa-solid fa-road"></i>Implementation Roadmap</a>
+            <a href="#testing"><i class="fa-solid fa-vial-circle-check"></i>Acceptance Tests</a>
+            <a href="#monitoring"><i class="fa-solid fa-chart-line"></i>Monitoring</a>
+            <a href="#done"><i class="fa-solid fa-flag-checkered"></i>Definition of Done</a>
+        </nav>
+    </aside>
+
+    <main>
+        <header class="hero" id="overview">
+            <div class="eyebrow"><i class="fa-solid fa-file-code"></i> Technical Project Documentation</div>
+            <h1>AI Automation of FVE Turnkey Sales Process</h1>
+            <p>
+                Enterprise-oriented technical design for automating the photovoltaic sales workflow from imported Odoo lead
+                to qualified offer, confirmed order and installation handoff.
+            </p>
+            <div class="hero-meta">
+                <div class="meta-card"><div class="meta-label">Core System</div><div class="meta-value">Odoo CRM</div></div>
+                <div class="meta-card"><div class="meta-label">Launch Target</div><div class="meta-value">August 2026</div></div>
+                <div class="meta-card"><div class="meta-label">MVP Goal</div><div class="meta-value">70-80% automation</div></div>
+                <div class="meta-card"><div class="meta-label">Prepared by</div><div class="meta-value">George</div></div>
+            </div>
+        </header>
+
+        <section>
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-bullseye"></i>Project Objective</div>
+                <h2>Automate standard FVE sales without losing operational control.</h2>
+                <p class="section-subtitle">
+                    The system starts when a lead is imported into Odoo. From that moment, AI handles qualification,
+                    customer communication and proposal preparation, while deterministic services handle pricing, validation and workflow updates.
+                </p>
+            </div>
+
+            <div class="highlight">
+                <div class="icon"><i class="fa-solid fa-key"></i></div>
+                <div>
+                    <div class="highlight-title">Key Principle</div>
+                    <div class="highlight-text">
+                        AI communicates, system services calculate, validation rules control risk and Odoo remains the system of record.
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-comments"></i></div>
+                    <h3>AI-led Communication</h3>
+                    <p>Initial contact, qualification, FAQ handling, objection handling, follow-up and customer confirmation.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Deterministic Calculation</h3>
+                    <p>FVE sizing, product variants, pricing, margin limits and discount rules are calculated by controlled services.</p>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3>Human Fallback</h3>
+                    <p>Low confidence, non-standard roofs, pricing exceptions, duplicate leads and GDPR-sensitive cases are escalated.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-sitemap"></i>Architecture</div>
+                <h2>Odoo-first architecture with a dedicated workflow and decision layer.</h2>
+                <p class="section-subtitle">
+                    The AI Orchestrator coordinates the bot, knowledge retrieval, pricing, FVE configuration, document generation and Odoo updates.
+                </p>
+            </div>
+
+            <div class="flow">
+                <div class="flow-stack">
+                    <div class="flow-node"><i class="fa-solid fa-user"></i>Customer</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><i class="fa-solid fa-tower-broadcast"></i>Channels: WhatsApp / Email / SMS / Voice</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><i class="fa-solid fa-robot"></i>AI Sales Bot</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node">
+                        <i class="fa-solid fa-network-wired"></i>
+                        <div>AI Orchestrator<small>Workflow & decision layer</small></div>
+                    </div>
+                    <div class="flow-arrow">↙ ↓ ↘</div>
+                    <div class="branch">
+                        <div class="branch-card"><i class="fa-solid fa-brain"></i><br />RAG</div>
+                        <div class="branch-card"><i class="fa-solid fa-tags"></i><br />Pricing</div>
+                        <div class="branch-card"><i class="fa-solid fa-calculator"></i><br />Configurator</div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><i class="fa-solid fa-database"></i>Odoo CRM</div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-node"><i class="fa-solid fa-screwdriver-wrench"></i>Order & Installation Workflow</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="principles">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-chess-board"></i>Architecture Principles</div>
+                <h2>Design principles keep the automation useful, controlled and maintainable.</h2>
+                <p class="section-subtitle">
+                    These rules define where AI is allowed to help, where deterministic systems remain responsible and how the workflow stays auditable.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="principle-list">
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-comments"></i></div>
+                        <div><strong>AI is the communication layer, not the source of truth.</strong><span>The AI Sales Bot explains, asks and summarizes. It does not own price lists, technical limits or contractual rules.</span></div>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-calculator"></i></div>
+                        <div><strong>Critical logic remains deterministic.</strong><span>Pricing, discounts, margins, package selection and approval flags are handled by controlled services.</span></div>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-user-check"></i></div>
+                        <div><strong>Human escalation is part of the design.</strong><span>Low-confidence, non-standard, high-value or compliance-sensitive cases are routed to a human owner with context.</span></div>
+                    </div>
+                </div>
+                <div class="principle-list">
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-database"></i></div>
+                        <div><strong>Odoo remains the operational core.</strong><span>Leads, statuses, offers, orders, tasks and audit records are stored in Odoo as the primary system of record.</span></div>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-bolt"></i></div>
+                        <div><strong>Integrations are event-driven.</strong><span>Lead creation, customer replies, uploads and confirmations trigger workflow events instead of manual follow-up.</span></div>
+                    </div>
+                    <div class="principle">
+                        <div class="principle-mark"><i class="fa-solid fa-clipboard-list"></i></div>
+                        <div><strong>Auditability by default.</strong><span>Important decisions store input data, confidence score, service output, selected action and escalation reason.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-cubes"></i>System Modules</div>
+                <h2>Each module has a clear responsibility, inputs, outputs and delivery scope.</h2>
+                <p class="section-subtitle">
+                    The implementation is intentionally modular so that MVP can be launched safely and expanded later.
+                </p>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>Odoo CRM</h3>
+                    <p>System of record for leads, pipeline, offers, orders and audit history.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Inputs</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Imported lead data</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>AI qualification updates</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Offer and order data</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Tasks</h4>
+                        <p>Configure CRM fields, pipeline stages, webhook triggers, API service user, escalation views and AI activity log.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Deliverables</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>AI-enabled CRM pipeline</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Escalation queue</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Audit visibility</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>AI Sales Bot</h3>
+                    <p>Customer-facing layer for qualification, explanation and follow-up.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Conversation Scope</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Initial contact</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Qualification questions</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Offer explanation</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Follow-up and handoff</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Implementation Focus</h4>
+                        <p>Build structured extraction, intent detection, missing-data handling, safe RAG answering and channel adapters.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Outputs</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Qualified customer profile</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Conversation summary</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Next-best workflow action</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>AI Orchestrator</h3>
+                    <p>Coordinates workflow state, service calls, validation and Odoo updates.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Core Functions</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>State machine</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Tool routing</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Confidence scoring</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Escalation decisions</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Resilience</h4>
+                        <p>Implement resilient orchestration mechanisms including retries, idempotency, timeouts, structured logging and monitoring.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Deliverables</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Webhook listener</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Workflow engine</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Audit event stream</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>RAG Knowledge Base</h3>
+                    <p>Approved knowledge layer for grounded AI responses.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Sources</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Product sheets</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>FAQ and sales scripts</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Warranty and legal text</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Installation process docs</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Tasks</h4>
+                        <p>Normalize documents, chunk content, add metadata, build vector index, version approved content and define forbidden-topic escalation.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Rules</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Use approved sources</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Track content version</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Escalate unsupported topics</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>OCR & Multimodal AI</h3>
+                    <p>Extracts structured data from invoices and customer-provided documents.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Extracted Fields</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Annual consumption</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Tariff and billing period</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Address and customer name</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Monthly or yearly cost</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Validation</h4>
+                        <p>Validate numeric consumption, address consistency, billing period and OCR confidence before using extracted data for pricing.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Fallback</h4>
+                        <p>Ask the customer to confirm uncertain values or escalate the invoice to manual review when extraction confidence is low.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="split-block">
+                <div class="split-label">
+                    <h3>FVE Configurator & Pricing</h3>
+                    <p>Produces technical-commercial proposal and validated price.</p>
+                </div>
+                <div class="grid-3">
+                    <div class="compact-card">
+                        <h4>Configurator Outputs</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Recommended kWp</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Panel and inverter variant</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Battery and wallbox option</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Technical risk flags</span></li>
+                        </ul>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Pricing Rules</h4>
+                        <p>Apply price lists, package rules, margin thresholds, discount limits, offer validity and approval-required flags.</p>
+                    </div>
+                    <div class="compact-card">
+                        <h4>Deliverables</h4>
+                        <ul class="list">
+                            <li><i class="fa-solid fa-check"></i><span>Structured proposal</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Price breakdown</span></li>
+                            <li><i class="fa-solid fa-check"></i><span>Approval flag if needed</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="data">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-database"></i>Data Model</div>
+                <h2>Core entities keep AI workflow auditable and traceable.</h2>
+                <p class="section-subtitle">
+                    Data is stored around the Odoo lead, with related AI sessions, FVE project data, extracted documents, pricing results and escalation tasks.
+                </p>
+            </div>
+
+            <div class="grid-4">
+                <div class="compact-card"><h4>Lead</h4><p>Contact, source, pipeline status and AI status.</p></div>
+                <div class="compact-card"><h4>AI Sales Session</h4><p>Conversation state, messages and summaries.</p></div>
+                <div class="compact-card"><h4>FVE Project Profile</h4><p>Address, consumption, roof, battery and wallbox data.</p></div>
+                <div class="compact-card"><h4>Invoice Extraction</h4><p>OCR output, validation status and confidence.</p></div>
+                <div class="compact-card"><h4>FVE Proposal</h4><p>Technical sizing, package and variants.</p></div>
+                <div class="compact-card"><h4>Pricing Result</h4><p>Price, margin, discount and approval flag.</p></div>
+                <div class="compact-card"><h4>Confidence Score</h4><p>Automation decision and explanation.</p></div>
+                <div class="compact-card"><h4>Escalation Task</h4><p>Owner, reason, status and resolution.</p></div>
+            </div>
+
+            <table style="margin-top: 28px;">
+                <thead>
+                    <tr><th>Odoo Field</th><th>Type</th><th>Purpose</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>ai_status</td><td>Selection</td><td>Tracks current automation state for the lead.</td></tr>
+                    <tr><td>ai_confidence_score</td><td>Float</td><td>Controls whether workflow continues, asks clarification or escalates.</td></tr>
+                    <tr><td>annual_consumption_kwh</td><td>Float</td><td>Primary input for FVE sizing and savings simulation.</td></tr>
+                    <tr><td>roof_type / roof_orientation</td><td>Selection</td><td>Technical assumptions for pre-design and risk detection.</td></tr>
+                    <tr><td>ai_escalation_reason</td><td>Text</td><td>Human-readable explanation for manual handoff.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="integrations">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-plug"></i>Integrations</div>
+                <h2>APIs are designed with retries, idempotency and audit logs from day one.</h2>
+                <p class="section-subtitle">
+                    The architecture assumes multiple external services. Each integration handles failures gracefully without losing lead state.
+                </p>
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>Integration</th><th>Direction</th><th>Purpose</th><th>Reliability Requirement</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Odoo Webhook</td><td>Odoo → Orchestrator</td><td>Start workflow on lead creation.</td><td>Idempotency key and retry queue.</td></tr>
+                    <tr><td>Odoo API</td><td>Orchestrator → Odoo</td><td>Update lead, create offer, create order.</td><td>Structured error handling and audit log.</td></tr>
+                    <tr><td>Email / SMS / WhatsApp</td><td>Bot → Customer</td><td>Customer communication.</td><td>Delivery status tracking and fallback channel.</td></tr>
+                    <tr><td>OCR Service</td><td>Orchestrator → OCR</td><td>Invoice extraction.</td><td>Confidence score and manual review trigger.</td></tr>
+                    <tr><td>Vector DB</td><td>Orchestrator → RAG</td><td>Knowledge retrieval.</td><td>Versioned content and source metadata.</td></tr>
+                    <tr><td>Pricing / Configurator</td><td>Orchestrator → Services</td><td>Proposal and price calculation.</td><td>Validation rules and approval flags.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="risks">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-shield-halved"></i>Operational Risk</div>
+                <h2>Production automation expects incomplete data, broken APIs and uncertain AI outputs.</h2>
+                <p class="section-subtitle">
+                    The system is designed to continue safely, ask for clarification or escalate instead of silently producing incorrect proposals.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="icon" style="background: var(--amber-soft); color: var(--amber);"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <h3>Operational Risks</h3>
+                    <div class="tag-row">
+                        <span class="tag"><i class="fa-solid fa-plug-circle-xmark"></i>API failures</span>
+                        <span class="tag"><i class="fa-solid fa-file-circle-question"></i>Incorrect OCR</span>
+                        <span class="tag"><i class="fa-solid fa-signal"></i>Low AI confidence</span>
+                        <span class="tag"><i class="fa-solid fa-clone"></i>Duplicate leads</span>
+                        <span class="tag"><i class="fa-solid fa-user-lock"></i>GDPR compliance</span>
+                    </div>
+                    <div class="mini-flow" aria-label="Retry flow">
+                        <span class="mini-flow-node">API fail</span>
+                        <span class="mini-flow-arrow">→</span>
+                        <span class="mini-flow-node">Retry queue</span>
+                        <span class="mini-flow-arrow">→</span>
+                        <span class="mini-flow-node">Alert</span>
+                        <span class="mini-flow-arrow">→</span>
+                        <span class="mini-flow-node">Escalation</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="icon" style="background: var(--green-soft); color: var(--green);"><i class="fa-solid fa-circle-check"></i></div>
+                    <h3>Mitigation Controls</h3>
+                    <div class="tag-row">
+                        <span class="tag"><i class="fa-solid fa-rotate"></i>Retry queue</span>
+                        <span class="tag"><i class="fa-solid fa-user-check"></i>Human escalation</span>
+                        <span class="tag"><i class="fa-solid fa-clipboard-list"></i>Audit logs</span>
+                        <span class="tag"><i class="fa-solid fa-check-double"></i>Validation rules</span>
+                        <span class="tag"><i class="fa-solid fa-fingerprint"></i>Duplicate matching</span>
+                    </div>
+                    <div class="mini-flow" aria-label="Confidence scoring flow">
+                        <span class="mini-flow-node">&gt;85% auto</span>
+                        <span class="mini-flow-arrow">/</span>
+                        <span class="mini-flow-node">60-85% clarify</span>
+                        <span class="mini-flow-arrow">/</span>
+                        <span class="mini-flow-node">&lt;60% handoff</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <div class="icon"><i class="fa-solid fa-gauge-high"></i></div>
+                <div>
+                    <div class="highlight-title">Escalation Trigger</div>
+                    <div class="highlight-text">
+                        Confidence score above 85% continues automatically, 60-85% asks a clarification question, and below 60% creates a human escalation task in Odoo.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-road"></i>Implementation Roadmap</div>
+                <h2>Concrete tasks by phase, with deliverables and acceptance criteria.</h2>
+                <p class="section-subtitle">
+                    Each phase is structured around outcomes, not repetitive individual "implement X" backlog items.
+                </p>
+            </div>
+
+            <article class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">1</div>
+                    <div>
+                        <h3>Analysis & Solution Design</h3>
+                        <p>Define process, data, architecture, Odoo changes, escalation rules and MVP boundaries.</p>
+                    </div>
+                    <div class="phase-time">May 2026</div>
+                </div>
+                <div class="phase-body">
+                    <div class="task-grid">
+                        <div class="task-card"><h4><i class="fa-solid fa-diagram-project"></i>Process Design</h4><p>Map current sales flow, identify automation points, define standard vs non-standard lead and human handoff rules.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-database"></i>Odoo Design</h4><p>Specify CRM fields, pipeline stages, lead import format, webhook events and access permissions.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-robot"></i>AI Design</h4><p>Define conversation states, qualification questions, safe response boundaries and follow-up timing.</p></div>
+                    </div>
+                    <table>
+                        <thead><tr><th>Deliverable</th><th>Acceptance Criteria</th></tr></thead>
+                        <tbody>
+                            <tr><td>Architecture specification</td><td>All components, APIs, data ownership and failure paths are approved.</td></tr>
+                            <tr><td>Odoo customization specification</td><td>Pipeline, fields, webhook and escalation queue are signed off.</td></tr>
+                            <tr><td>MVP backlog</td><td>Scope is clear enough for June implementation without major discovery gaps.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">2</div>
+                    <div>
+                        <h3>MVP Development</h3>
+                        <p>Build the first end-to-end workflow from Odoo lead to AI-qualified offer and escalation fallback.</p>
+                    </div>
+                    <div class="phase-time">June 2026</div>
+                </div>
+                <div class="phase-body">
+                    <div class="task-grid">
+                        <div class="task-card"><h4><i class="fa-solid fa-table-columns"></i>Odoo Build</h4><p>Create AI CRM fields, service user, webhook trigger, API update path, lead log view and escalation queue.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-network-wired"></i>Orchestrator Build</h4><p>Develop workflow state machine, tool routing, resilient execution, audit events and confidence-based decisions.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-comments"></i>Bot Build</h4><p>Deliver customer contact, qualification, structured extraction, RAG-based FAQ and follow-up flows.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-file-invoice"></i>OCR Build</h4><p>Support invoice upload, field extraction, validation, customer confirmation and manual review fallback.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-solar-panel"></i>FVE Build</h4><p>Create basic sizing logic, package selection, battery/wallbox recommendation and technical risk flags.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-tags"></i>Pricing Build</h4><p>Apply price lists, margin thresholds, discount limits, offer validity and approval-required flags.</p></div>
+                    </div>
+                    <table>
+                        <thead><tr><th>Area</th><th>Success Criteria</th></tr></thead>
+                        <tbody>
+                            <tr><td>Lead automation</td><td>Imported Odoo lead triggers AI workflow automatically.</td></tr>
+                            <tr><td>Qualification</td><td>Bot collects required FVE data and stores it in Odoo.</td></tr>
+                            <tr><td>Offer generation</td><td>Configurator and pricing engine produce a structured offer.</td></tr>
+                            <tr><td>Escalation</td><td>Low-confidence cases create a human task with context.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">3</div>
+                    <div>
+                        <h3>Pilot Testing & Calibration</h3>
+                        <p>Run controlled real-lead testing and tune thresholds, prompts, documents and failure handling.</p>
+                    </div>
+                    <div class="phase-time">July 2026</div>
+                </div>
+                <div class="phase-body">
+                    <div class="task-grid">
+                        <div class="task-card"><h4><i class="fa-solid fa-vial"></i>Scenario Testing</h4><p>Test no response, incomplete data, invoice upload, customer objections, order confirmation and handoff paths.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-sliders"></i>Calibration</h4><p>Review false escalations, missed escalations, OCR errors and tune confidence thresholds accordingly.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-chart-simple"></i>Reporting</h4><p>Track response time, automation rate, quote generation, escalation rate, OCR quality and drop-off points.</p></div>
+                    </div>
+                    <table>
+                        <thead><tr><th>Metric</th><th>Target for Go-Live</th></tr></thead>
+                        <tbody>
+                            <tr><td>Response time</td><td>Below 5 minutes for automated first contact.</td></tr>
+                            <tr><td>Automation rate</td><td>70%+ of standard pilot leads processed without salesperson.</td></tr>
+                            <tr><td>Critical bugs</td><td>No open blocker for lead state, pricing or order handoff.</td></tr>
+                            <tr><td>Data quality</td><td>Odoo fields complete enough for technical review and reporting.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article class="phase">
+                <div class="phase-header">
+                    <div class="phase-number">4</div>
+                    <div>
+                        <h3>Production Launch</h3>
+                        <p>Deploy stable MVP, monitor the first production leads and operate with a documented support process.</p>
+                    </div>
+                    <div class="phase-time">August 2026</div>
+                </div>
+                <div class="phase-body">
+                    <div class="task-grid">
+                        <div class="task-card"><h4><i class="fa-solid fa-rocket"></i>Deployment</h4><p>Freeze MVP scope, configure production credentials, deploy services and enable Odoo webhook.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-headset"></i>Operations</h4><p>Prepare support runbook, ownership model, monitoring alerts and daily review routine for first production weeks.</p></div>
+                        <div class="task-card"><h4><i class="fa-solid fa-lock"></i>Compliance</h4><p>Confirm access rights, audit logs, consent handling, document retention and GDPR deletion path.</p></div>
+                    </div>
+                    <table>
+                        <thead><tr><th>Production Area</th><th>Readiness Criteria</th></tr></thead>
+                        <tbody>
+                            <tr><td>Workflow</td><td>Production leads are processed, updated and escalated correctly.</td></tr>
+                            <tr><td>Documents</td><td>Offers are generated with correct customer, proposal and pricing data.</td></tr>
+                            <tr><td>Monitoring</td><td>API failures, queue size, OCR failures and escalations are visible.</td></tr>
+                            <tr><td>Support</td><td>Sales and technical teams know how to take over escalated cases.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+
+        <section id="testing">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-vial-circle-check"></i>Acceptance Tests</div>
+                <h2>End-to-end tests validate the business process, not only individual APIs.</h2>
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>Test Scenario</th><th>Flow</th><th>Expected Result</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Standard Lead</td><td>Lead import → bot qualification → configurator → pricing → offer → confirmation.</td><td>No human intervention required.</td></tr>
+                    <tr><td>Invoice Upload</td><td>Customer uploads invoice → OCR extracts data → customer confirms values → Odoo updates.</td><td>Consumption data is usable for proposal generation.</td></tr>
+                    <tr><td>Low Confidence</td><td>Customer provides unclear or conflicting answers.</td><td>Escalation task is created with full context.</td></tr>
+                    <tr><td>Duplicate Lead</td><td>Same phone or email enters Odoo twice.</td><td>Duplicate is merged or routed to manual review.</td></tr>
+                    <tr><td>Pricing Exception</td><td>Customer requests non-standard discount.</td><td>Bot does not promise discount and escalates approval.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="monitoring">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-chart-line"></i>Monitoring Dashboard</div>
+                <h2>Operations, business and AI quality metrics are tracked separately.</h2>
+            </div>
+
+            <div class="grid-3">
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-server"></i></div>
+                    <h3>Operational Metrics</h3>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-check"></i><span>Failed API calls</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Retry queue size</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>OCR failure rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Channel delivery failures</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-briefcase"></i></div>
+                    <h3>Business Metrics</h3>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-check"></i><span>Automation rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Qualification rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Quote acceptance rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Lost reason analytics</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="icon"><i class="fa-solid fa-brain"></i></div>
+                    <h3>AI Quality Metrics</h3>
+                    <ul class="list">
+                        <li><i class="fa-solid fa-check"></i><span>Average confidence score</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Low-confidence rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Escalation rate</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>RAG retrieval success</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="done">
+            <div class="section-heading">
+                <div class="section-kicker"><i class="fa-solid fa-flag-checkered"></i>Definition of Done</div>
+                <h2>MVP is complete when automation is useful, auditable and safe to operate.</h2>
+            </div>
+
+            <table>
+                <thead>
+                    <tr><th>Area</th><th>Success Criteria</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Odoo</td><td>Lead import starts workflow, pipeline updates automatically and escalation queue is operational.</td></tr>
+                    <tr><td>AI Sales Bot</td><td>Qualifies standard customers, answers using approved knowledge and stores conversation context.</td></tr>
+                    <tr><td>OCR</td><td>Common electricity invoices are extracted, validated and confirmed before use.</td></tr>
+                    <tr><td>Pricing</td><td>Valid price calculation is produced with margin, discount and approval rules.</td></tr>
+                    <tr><td>Escalation</td><td>Low confidence and risky cases are routed to the correct human owner.</td></tr>
+                    <tr><td>Compliance</td><td>Audit logs, access rights, consent handling and GDPR retention rules are documented.</td></tr>
+                    <tr><td>Monitoring</td><td>Operational, business and AI quality metrics are visible in dashboards.</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <div class="footer">
+            Technical documentation for AI automation of FVE turnkey sales process. Prepared by: George.
+        </div>
+    </main>
+</div>
+</body>
+</html>
